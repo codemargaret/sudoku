@@ -10,10 +10,10 @@ function Sudoku() {
     [],
     []
   ];
-}
+};
 
 Sudoku.prototype.createPuzzle(puzzle) {
-  arr = puzzle.toString().split('');
+  arr = puzzle.toString().join('').split('');
 
   this.puzzle.forEach(function(n) {
     for (var i = 0; i <= 8; i++) {
@@ -23,49 +23,46 @@ Sudoku.prototype.createPuzzle(puzzle) {
       }
     }
   });
+};
 
-  Sudoku.prototype.rowChecker() {
-    this.puzzle.forEach(function(n) {
-      if (n.sort().join('') == '123456789') {
-        return true;
-      } else {
-        return false;
-      }
-    })
-  }
-
-  Sudoku.prototype.columnChecker() {
-    var test = [
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      []
-    ];
-    var i = 0;
-    var j = 0;
-    while (i <= 8) {
-      while (j <= 8) {
-        this.puzzle.forEach(function(n) {
-          test[i].push(n[j]);
-        })
-        i += 1;
-        j += 1;
-      }
+Sudoku.prototype.rowChecker() {
+  this.puzzle.forEach(function(n) {
+    if (n.sort().join('') == '123456789') {
+      return true;
+    } else {
+      return false;
     }
+  });
+};
 
-    test.forEach(function(n) {
-      if (n.sort().join('') == '123456789') {
-        return true;
-      } else {
-        return false;
-      }
+Sudoku.prototype.columnChecker() {
+  var test = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ];
+  var j = 0;
+  while (j <= 8) {
+    this.puzzle.forEach(function(n) {
+      test[j].push(n[j]);
     })
+    j += 1;
   }
+
+  test.forEach(function(n) {
+    if (n.sort().join('') == '123456789') {
+      return true;
+    } else {
+      return false;
+    }
+  });
+};
 
 exports.sudokuModule = Sudoku;
 
